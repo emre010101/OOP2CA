@@ -1,4 +1,4 @@
-package Items;
+package model.items;
 
 public interface LibraryItem {
     String getTitle();

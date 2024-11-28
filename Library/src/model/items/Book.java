@@ -1,4 +1,4 @@
-package Items;
+package model.items;
 
 /**
  * Represents an abstract book in a library.

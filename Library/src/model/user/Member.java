@@ -1,6 +1,6 @@
-package User;
+package model.user;
 
-import Enums.MemberLevel;
+import model.enums.MemberLevel;
 
 public class Member extends User {
 
@@ -35,7 +35,7 @@ public class Member extends User {
     }
 
     // Update total books borrowed (called when a book is borrowed)
-    private void incrementTotalBooksBorrowed() {
+    public void incrementTotalBooksBorrowed() {
         totalBooksBorrowed++;
     }
 }

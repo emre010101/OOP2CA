@@ -1,4 +1,4 @@
-package User;
+package model.user;
 
 public abstract class User {
     private String name;

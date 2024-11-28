@@ -1,4 +1,4 @@
-package Items;
+package model.items;
 
 /**
  * Represents a DVD in a library collection.
@@ -7,9 +7,9 @@ package Items;
  * and availability status.
  */
 public class Dvd implements LibraryItem{
-    private String title;
-    private String director;
-    private int duration; // in minutes
+    private final String title;
+    private final String director;
+    private final int duration; // in minutes
     private boolean available;
 
     public Dvd(String title, String director, int duration) {

@@ -1,6 +1,6 @@
-package User;
+package model.user;
 
-import Enums.StaffLevel;
+import model.enums.StaffLevel;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
