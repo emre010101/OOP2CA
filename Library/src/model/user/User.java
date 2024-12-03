@@ -33,6 +33,12 @@ public abstract class User {
 
     // Abstract method to update levels if applicable
     public abstract void updateLevel();
-    
-    
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

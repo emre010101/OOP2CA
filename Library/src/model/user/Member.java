@@ -38,4 +38,13 @@ public class Member extends User {
     public void incrementTotalBooksBorrowed() {
         totalBooksBorrowed++;
     }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "totalBooksBorrowed=" + totalBooksBorrowed +
+                ", level=" + level +
+                super.toString() + ", " + //include parent fields
+                '}';
+    }
 }

@@ -15,16 +15,17 @@ public class LoanService {
         this.loans = new ArrayList<>();
     }
 
-    public void createLoan(Member member, LibraryItem item) {
+    public Loan createLoan(Member member, LibraryItem item) {
         if (!item.isAvailable()) {
             System.out.println("Book is not available for loan.");
-            return;
+            return null;
         }
         Loan loan = new Loan(member, item, LocalDate.now(), LocalDate.now().plusWeeks(2));
         loans.add(loan);
         item.setAvailable(false);
         member.incrementTotalBooksBorrowed();
         System.out.println("Loan created successfully!");
+        return loan;
     }
 
     public void completeLoan(Loan loan) {

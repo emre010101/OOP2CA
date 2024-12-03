@@ -19,7 +19,7 @@ public class UserService {
     }
     
     // Find a user by ID
-    public User findUserById(int id) {
+    public User findUserById(long id) {
         // use of for loop
         for (User user : users) {
             if (user.getId() == id) {

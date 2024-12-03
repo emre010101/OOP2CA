@@ -13,6 +13,7 @@ public class Staff extends User{
     public Staff(String name, Long id, LocalDate joinDate) {
         super(name, id);
         this.joinDate = joinDate;
+        level = StaffLevel.JUNIOR; //starting point for all new staff
     }
 
     @Override
@@ -30,5 +31,14 @@ public class Staff extends User{
         } else {
             level = StaffLevel.JUNIOR;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "joinDate=" + joinDate +
+                ", level=" + level +
+                super.toString() + ", " +//include parent fields
+                '}';
     }
 }
