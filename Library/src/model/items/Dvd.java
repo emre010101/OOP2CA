@@ -41,4 +41,14 @@ public class Dvd implements LibraryItem{
     public void setAvailable(boolean available) {
         this.available = available;
     }
+
+    @Override
+    public String toString() {
+        return "Dvd{" +
+                "title='" + title + '\'' +
+                ", director='" + director + '\'' +
+                ", duration=" + duration +
+                ", available=" + available +
+                '}';
+    }
 }

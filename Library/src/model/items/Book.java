@@ -58,5 +58,15 @@ public abstract class Book implements LibraryItem {
         this.rarityReason = rare ? reason : "";
     }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", available=" + available +
+                ", rare=" + rare +
+                ", rarityReason='" + rarityReason + '\'' +
+                '}';
+    }
 }
 

@@ -35,10 +35,10 @@ public class Staff extends User{
 
     @Override
     public String toString() {
-        return "Staff{" +
+        return super.toString() +//include parent fields
+                " Staff{" +
                 "joinDate=" + joinDate +
                 ", level=" + level +
-                super.toString() + ", " +//include parent fields
                 '}';
     }
 }

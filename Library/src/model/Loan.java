@@ -51,4 +51,15 @@ public class Loan {
     public boolean isActive() {
         return returnedDate == null;
     }
+
+    @Override
+    public String toString() {
+        return "Loan{" +
+                "member=" + member +
+                ", libraryItem=" + libraryItem +
+                ", loanDate=" + loanDate +
+                ", dueDate=" + dueDate +
+                ", returnedDate=" + returnedDate +
+                '}';
+    }
 }

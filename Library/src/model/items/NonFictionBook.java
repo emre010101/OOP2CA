@@ -22,4 +22,13 @@ public class NonFictionBook extends Book {
     public String getSubject() {
         return subject;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + //include parent fields
+                " NonFictionBook{" +
+                "subject='" + subject + '\'' +
+                ", year=" + year +
+                '}';
+    }
 }

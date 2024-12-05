@@ -13,4 +13,11 @@ public class FictionBook extends Book {
         this.genre = genre;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + " FictionBook{" +
+                "genre='" + genre + '\'' +
+                '}';
+    }
+
 }

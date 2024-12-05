@@ -39,4 +39,7 @@ public class LoanService {
                 .filter(Loan::isActive)
                 .toList();
     }
+    public List<Loan> getLoansForMember(Member member) {
+        return getActiveLoans().stream().filter(loan -> loan.getMember().equals(member)).toList();
+    }
 }

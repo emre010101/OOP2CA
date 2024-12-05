@@ -41,10 +41,10 @@ public class Member extends User {
 
     @Override
     public String toString() {
-        return "Member{" +
+        return super.toString() + //include parent fields
+                " Member{" +
                 "totalBooksBorrowed=" + totalBooksBorrowed +
                 ", level=" + level +
-                super.toString() + ", " + //include parent fields
                 '}';
     }
 }

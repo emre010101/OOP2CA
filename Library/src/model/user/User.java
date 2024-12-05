@@ -1,5 +1,7 @@
 package model.user;
 
+import exception.UserNotFoundException;
+
 public abstract class User {
     private String name;
     private Long id;
