@@ -34,12 +34,14 @@ public class LoanService {
         System.out.println("Loan completed successfully!");
     }
 
+    // Defensive copy in getter
     public List<Loan> getActiveLoans() {
-        return loans.stream()
+        return new ArrayList<>(loans.stream()
                 .filter(Loan::isActive)
-                .toList();
+                .toList());
     }
+    // Defensive copy in getter
     public List<Loan> getLoansForMember(Member member) {
-        return getActiveLoans().stream().filter(loan -> loan.getMember().equals(member)).toList();
+        return new ArrayList<>(getActiveLoans().stream().filter(loan -> loan.getMember().equals(member)).toList());
     }
 }

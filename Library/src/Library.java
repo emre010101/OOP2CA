@@ -268,6 +268,11 @@ public class Library {
         }
     }
 
+    /**
+     *
+     * @param scanner
+     * @param activeUser
+     */
     private void returnItem(Scanner scanner, User activeUser) {
         try {
             Member member = (Member) activeUser;
@@ -283,7 +288,7 @@ public class Library {
 
             // Display the active loans
             System.out.println("Active Loans:");
-            var listOptions = new ArrayList<String>();
+            var listOptions = new ArrayList<String>(); //Local Variable Type Inference
             for (int i = 0; i < loans.size(); i++) {
                 listOptions.add(String.valueOf(i+1));
                 Loan loan = loans.get(i);
