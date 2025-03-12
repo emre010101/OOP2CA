@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 public class Library {
     private final UserService userService;
@@ -144,11 +145,18 @@ public class Library {
         System.out.println("Exiting Library Management System. Goodbye!");
     }
 
+
+    /**
+     * For loop replaced with functional interface Consumer
+     * Consumer<T> : Accepts an input and performs an operation, but doesn't return a result
+     */
     private void listItems() {
         List<LibraryItem> items = libraryItemService.getLibraryItems();
-        for (LibraryItem item : items) {
-            System.out.println(item.toString());
-        }
+        Consumer<LibraryItem> printItem = System.out::println;
+        items.forEach(printItem);
+//        for (LibraryItem item : items) {
+//            System.out.println(item.toString());
+//        }
     }
 
     private void listUsers() {

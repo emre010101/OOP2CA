@@ -7,6 +7,7 @@ import model.user.Member;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class LoanService {
     private final List<Loan> loans;
@@ -34,14 +35,28 @@ public class LoanService {
         System.out.println("Loan completed successfully!");
     }
 
-    // Defensive copy in getter
+
+    /**
+     * Lambdas example
+     * Stream Api used get stream of series and applied filter
+     * Defensive copy in getter
+     * @return List<Loan>
+     */
     public List<Loan> getActiveLoans() {
         return new ArrayList<>(loans.stream()
                 .filter(Loan::isActive)
                 .toList());
     }
-    // Defensive copy in getter
+
+    /**
+     * Lambdas example
+     * Predicate used to have condition on loans which returns True if it's belong to user
+     * Defensive copy in getter
+     * @param member
+     * @return List<Loan>
+     */
     public List<Loan> getLoansForMember(Member member) {
-        return new ArrayList<>(getActiveLoans().stream().filter(loan -> loan.getMember().equals(member)).toList());
+        Predicate<Loan> loanPredicate = loan -> loan.getMember().equals(member);
+        return new ArrayList<>(getActiveLoans().stream().filter(loanPredicate).toList());
     }
 }
