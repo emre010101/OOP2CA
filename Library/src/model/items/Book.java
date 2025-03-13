@@ -1,5 +1,7 @@
 package model.items;
 
+import java.util.function.Supplier;
+
 /**
  * Represents an abstract book in a library.
  * This class provides the basic attributes and methods
@@ -8,6 +10,7 @@ package model.items;
  */
 public abstract class Book implements LibraryItem {
     // Variables
+    private final Long id;
     private final String author;
     private final String title;
     private boolean available;
@@ -16,6 +19,7 @@ public abstract class Book implements LibraryItem {
 
     // Constructor
     public Book(String title, String author) {
+        this.id = idSupplier.get();
         this.title = title;
         this.author = author;
         this.available = true;
@@ -23,10 +27,25 @@ public abstract class Book implements LibraryItem {
         this.rarityReason = "";
     }
 
+    /**
+     * Static Supplier functional interface used to supply ids
+     * Static is used to share the same instance across all the book instances
+     * Each entity will have sequential id
+     */
+    private static final Supplier<Long> idSupplier = new Supplier<>() {
+        private long id = -1L; //Starting with minus to get 0 for 1st instance
+
+        @Override
+        public Long get() {
+            return ++id;
+        }
+    };
+
     // Getters
     public String getAuthor() {
         return author;
     }
+    public Long getId() { return id; }
 
     // Interface overridden methods
     @Override
@@ -61,6 +80,7 @@ public abstract class Book implements LibraryItem {
     @Override
     public String toString() {
         return "Book{" +
+                "id=" + id + '\'' +
                 "author='" + author + '\'' +
                 ", title='" + title + '\'' +
                 ", available=" + available +
