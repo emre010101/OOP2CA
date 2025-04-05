@@ -237,7 +237,7 @@ public class Library {
         } else if (bookType.equals("nonfiction")) {
             System.out.print("Enter subject: ");
             String subject = scanner.nextLine();
-            System.out.print("Enter year of publication: ");
+            System.out.print("Enter year of publication: (2012)");
             int year = Integer.parseInt(scanner.nextLine());
             libraryItemService.addItem(new NonFictionBook(title, author, subject, year));
         }

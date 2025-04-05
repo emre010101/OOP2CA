@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 public class InputUtils {
 
@@ -23,7 +24,10 @@ public class InputUtils {
                 return null; // Indicate that the user wants to quit
             }
 
-            if (validOptions.contains(input.toLowerCase())) {
+            //Another use of predicate.test()
+            Predicate<String> checkValidOptionsContains = validOptions::contains;
+
+            if (checkValidOptionsContains.test(input.toLowerCase())) {
                 return input; // Return valid input
             } else {
                 System.out.println("Invalid option. Please try again.");

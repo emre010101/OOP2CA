@@ -1,5 +1,6 @@
 package model.items;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -42,10 +43,10 @@ public abstract class Book implements LibraryItem {
     };
 
     // Getters
+    public Long getId() { return id; }
     public String getAuthor() {
         return author;
     }
-    public Long getId() { return id; }
 
     // Interface overridden methods
     @Override
