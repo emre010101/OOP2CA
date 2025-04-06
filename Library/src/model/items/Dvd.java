@@ -1,5 +1,7 @@
 package model.items;
 
+import java.util.Comparator;
+
 /**
  * Represents a DVD in a library collection.
  * This class implements the LibraryItem interface and provides
@@ -50,5 +52,9 @@ public class Dvd implements LibraryItem{
                 ", duration=" + duration +
                 ", available=" + available +
                 '}';
+    }
+
+    public static Comparator<Dvd> comparatorOnDuration(){
+        return Comparator.comparing(Dvd::getDuration);
     }
 }

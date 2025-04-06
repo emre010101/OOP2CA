@@ -16,10 +16,10 @@ public class NonFictionBook extends Book {
         this.subject = subject;
     }
 
-    public int getYear() {
+    private int getYear() {
         return year;
     }
-    public String getSubject() {
+    private String getSubject() {
         return subject;
     }
 

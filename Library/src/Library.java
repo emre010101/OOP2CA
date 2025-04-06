@@ -153,11 +153,9 @@ public class Library {
      */
     private void listItems() {
         List<LibraryItem> items = libraryItemService.getLibraryItems();
+        items.sort(LibraryItem.sortByTitle()); //using static method in the interface
         Consumer<LibraryItem> printItem = System.out::println;
         items.forEach(printItem);
-//        for (LibraryItem item : items) {
-//            System.out.println(item.toString());
-//        }
     }
 
     private void listUsers() {

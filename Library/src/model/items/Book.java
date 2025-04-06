@@ -20,12 +20,12 @@ public abstract class Book implements LibraryItem {
 
     // Constructor
     public Book(String title, String author) {
-        this.id = idSupplier.get();
+        id = idSupplier.get();
         this.title = title;
         this.author = author;
-        this.available = true;
-        this.rare = false; // Default: not rare
-        this.rarityReason = "";
+        available = true;
+        rare = false; // Default: not rare
+        rarityReason = "";
     }
 
     /**
