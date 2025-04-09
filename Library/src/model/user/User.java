@@ -1,34 +1,34 @@
 package model.user;
 
-import exception.UserNotFoundException;
+import java.time.LocalDate;
 
-public abstract class User {
+public abstract sealed class User permits Member, Staff {
     private String name;
     private Long id;
+    private LocalDate dateJoined;
+
 
     // Constructor
     public User(String name, Long id) {
         this.name = name;
         this.id = id;
+        dateJoined = LocalDate.now();
     }
 
     // Setters
-    public String getName() {
-        return name;
+    public void setId(Long id) {
+        this.id = id;
     }
-
     public void setName(String name) {
         this.name = name;
     }
 
     // Getters
+    public String getName() {return name;}
     public Long getId() {
         return id;
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public LocalDate getDateJoined() {return dateJoined;}
 
     // Abstract method to determine levels
     public abstract String getLevel();
@@ -41,6 +41,7 @@ public abstract class User {
         return "User{" +
                 "name='" + name + '\'' +
                 ", id=" + id +
+                ", dateJoined=" + dateJoined +
                 '}';
     }
 }

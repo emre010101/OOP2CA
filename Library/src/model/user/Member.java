@@ -2,7 +2,7 @@ package model.user;
 
 import model.enums.MemberLevel;
 
-public class Member extends User {
+public final class Member extends User {
 
     // Variables
     private int totalBooksBorrowed;

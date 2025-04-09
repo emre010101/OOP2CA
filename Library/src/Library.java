@@ -6,6 +6,7 @@ import model.items.Dvd;
 import model.items.FictionBook;
 import model.items.LibraryItem;
 import model.items.NonFictionBook;
+import model.records.UserRecord;
 import model.user.Member;
 import model.user.Staff;
 import model.user.User;
@@ -160,8 +161,8 @@ public class Library {
     }
 
     private void listUsers() {
-        List<User> userList = userService.getAllUsers();
-        for (User user : userList) {
+        List<UserRecord> userList = userService.getAllUsers();
+        for (UserRecord user : userList) {
             System.out.println(user);
         }
     }

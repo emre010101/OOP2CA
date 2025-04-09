@@ -66,9 +66,9 @@ public class LibraryItemService {
 
     public List<LibraryItem> getLibraryItems(Boolean available) {
         if (available) {
-            libraryItems.stream().filter(LibraryItem::isAvailable).toList();
+            return libraryItems.stream().filter(LibraryItem::isAvailable).toList();
         }else{
-            new ArrayList<>(libraryItems);
+            return new ArrayList<>(libraryItems);
         }
     }
 

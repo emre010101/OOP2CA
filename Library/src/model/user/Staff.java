@@ -5,7 +5,7 @@ import model.enums.StaffLevel;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class Staff extends User{
+public final class Staff extends User{
 
     private final LocalDate joinDate;
     private StaffLevel level;

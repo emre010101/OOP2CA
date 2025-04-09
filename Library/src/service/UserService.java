@@ -1,6 +1,7 @@
 package service;
 
 import exception.UserNotFoundException;
+import model.records.UserRecord;
 import model.user.Member;
 import model.user.Staff;
 import model.user.User;
@@ -47,16 +48,14 @@ public class UserService {
                 (userType.equals("staff") && !(user instanceof Staff))) {
             throw new UserNotFoundException("User not found or does not match the specified type.");
         }
-       // System.out.println("Wonder if it will be printed after exception thrown");
-
         return user;
     }
-    
+
     // Add a new user
     public void addUser(User user) {
         users.add(user);
     }
-    
+
     // Find a user by ID
     public User findUserById(long id) {
         // use of for loop
@@ -67,7 +66,7 @@ public class UserService {
         }
         return null;
     }
-    
+
     public User findUserByName(String name) {
         // use of stream
         return users.stream()
@@ -82,8 +81,15 @@ public class UserService {
     }
 
     // List all users
-    public List<User> getAllUsers() {
-        return users;
+    public List<UserRecord> getAllUsers() {
+        return users.stream()
+                .map(user -> {
+                    String type = (user instanceof Member) ? "Member" : "Staff";
+                    String level = user.getLevel().toString();
+                    return new UserRecord(user.getName(), type, level);
+                })
+                .toList();
     }
+
 
 }
