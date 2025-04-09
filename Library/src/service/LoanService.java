@@ -37,7 +37,7 @@ public class LoanService {
 
 
     /**
-     * Lambdas example
+     * Method Reference example
      * Stream Api used get stream of series and applied filter
      * Defensive copy in getter
      * @return List<Loan>

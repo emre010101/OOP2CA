@@ -19,7 +19,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class Library {
     private final UserService userService;
@@ -122,17 +121,19 @@ public class Library {
                 }
             }else{ //If it's a member it will have different options
                 System.out.println("1. List Items");
-                System.out.println("2. Borrow Item");
-                System.out.println("3. Return Item");
-                System.out.println("4. View Active Loans for Active User");
+                System.out.println("2. Search Item");
+                System.out.println("3. Borrow Item");
+                System.out.println("4. Return Item");
+                System.out.println("5. View Active Loans for Active User");
                 System.out.println("q. Quit");
                 System.out.print("Choose an option: ");
                 String choice = scanner.nextLine();
                 switch (choice) {
                     case "1" -> listItems();
-                    case "2" -> borrowItem(scanner, activeUser);
-                    case "3" -> returnItem(scanner, activeUser);
-                    case "4" -> viewActiveLoansForUser(scanner, activeUser);
+                    case "2" -> searchItems(scanner);
+                    case "3" -> borrowItem(scanner, activeUser);
+                    case "4" -> returnItem(scanner, activeUser);
+                    case "5" -> viewActiveLoansForUser(scanner, activeUser);
                     case "q" -> running = false;
                     default -> System.out.println("Invalid option. Please try again.");
                 }
@@ -152,9 +153,9 @@ public class Library {
      * Consumer<T> : Accepts an input and performs an operation, but doesn't return a result
      */
     private void listItems() {
-        List<LibraryItem> items = libraryItemService.getLibraryItems();
+        List<LibraryItem> items = libraryItemService.getLibraryItems(true);
         items.sort(LibraryItem.sortByTitle()); //using static method in the interface
-        Consumer<LibraryItem> printItem = System.out::println;
+        Consumer<LibraryItem> printItem = item -> System.out.println(item.getTitle());
         items.forEach(printItem);
     }
 
@@ -267,10 +268,36 @@ public class Library {
             }else if(!libraryItem.isAvailable()){
                 throw new ItemNotAvailableException(bookTitle + " is not available.");
             }else{
-                Loan _ = loanService.createLoan((Member) activeUser, libraryItem);
-                System.out.println("Book borrowed successfully!");
+                borrowItem(activeUser, libraryItem);
             }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    private void borrowItem(User activeUser, LibraryItem libraryItem) {
+        Loan _ = loanService.createLoan((Member) activeUser, libraryItem);
+        System.out.println("Book borrowed successfully!");
+    }
+
+    private void searchItems(Scanner scanner) {
+        try{
+            System.out.print("Enter item title: ");
+            String itemTitle = scanner.nextLine().trim();
+
+            List<LibraryItem> libraryItems = libraryItemService.searchItemByTitle(itemTitle);
+            if(libraryItems.size() > 0){
+                System.out.println("Available items: ");
+                for(LibraryItem libraryItem : libraryItems){
+                    System.out.println(libraryItem.toString());
+                }
+            }else{
+                System.out.println("No items found.");
+                String userAnswer = InputUtils.getValidInput("Do you want to search again? (type y/n)", Arrays.asList("y", "n"), scanner);
+                if(userAnswer.equalsIgnoreCase("y")){
+                    searchItems(scanner);
+                }
+            }
+        }catch (Exception e){
             System.out.println(e.getMessage());
         }
     }

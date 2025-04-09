@@ -7,6 +7,7 @@ import model.items.NonFictionBook;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class LibraryItemService {
     private List<LibraryItem> libraryItems;
@@ -63,8 +64,12 @@ public class LibraryItemService {
                 .orElse(null);
     }
 
-    public List<LibraryItem> getLibraryItems() {
-        return libraryItems;
+    public List<LibraryItem> getLibraryItems(Boolean available) {
+        if (available) {
+            libraryItems.stream().filter(LibraryItem::isAvailable).toList();
+        }else{
+            new ArrayList<>(libraryItems);
+        }
     }
 
     // Check availability
@@ -77,5 +82,12 @@ public class LibraryItemService {
     // Remove an item with their title
     public boolean removeItem(String title) {
         return libraryItems.removeIf(item -> item.getTitle().equals(title));
+    }
+
+    public List<LibraryItem> searchItemByTitle(String itemTitle) {
+        Predicate<LibraryItem> containsCharinTitle = libraryItem -> libraryItem.getTitle().contains(itemTitle);
+        return libraryItems.stream()
+                .filter(containsCharinTitle)
+                .toList();
     }
 }
