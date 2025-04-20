@@ -71,7 +71,7 @@ public class LoanService {
         return new ArrayList<>(getActiveLoans().stream().filter(loanPredicate).toList());
     }
     public static void main(String[] args) {
-        LibraryItem item = new NonFictionBook("Java Basics", "Alice", "Programming", 2020); // assume Book extends LibraryItem
+        LibraryItem item = new NonFictionBook("Java Basics", "Alice", "Programming", 2020);
         Member member1 = new Member("John", 1L);
         Member member2 = new Member("Sarah", 2L);
 
